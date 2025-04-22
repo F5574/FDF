@@ -50,3 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Git files inside libft directory
+libft/.git/
+libft/.gitignore
