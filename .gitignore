@@ -54,5 +54,4 @@ dkms.conf
 # Git files inside libft directory
 libft/.git/
 libft/.gitignore
-minilibx-linux/.git/
-minilibx-linux/.gitignore
+minilibx-linux/
