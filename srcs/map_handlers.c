@@ -6,7 +6,7 @@
 /*   By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:20:19 by gisrael           #+#    #+#             */
-/*   Updated: 2025/05/08 18:59:20 by gisrael          ###   ########.fr       */
+/*   Updated: 2025/05/09 00:10:40 by gisrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,6 @@ static void error_map(char *line, int fd, char *msg)
 	exit(1);
 }
 
-void map_format(char *path)
-{
-	int fd;
-	char *line;
-	int dot_count;
-	int prev_dot_count;
-
-	dot_count = 0;
-	prev_dot_count = 0;
-	fd = filecheck(path);
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (line[0] == '\n' || line[0] == '\0')
-			error_map(line, fd, "Error: Empty line in map");
-		dot_count = dots_count(line);
-		if (prev_dot_count == 0)
-			prev_dot_count = dot_count;
-		if (dot_count != prev_dot_count)
-			error_map(line, fd, "Error: Inconsistent number of dots in lines");
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-}
-
 static void	map_cord_put(char *line, int y, t_map *map)
 {
 	int		x;
@@ -98,5 +72,53 @@ static void	map_cord_put(char *line, int y, t_map *map)
 	}
 }
 
+void map_format(char *path)
+{
+	int fd;
+	char *line;
+	int dot_count;
+	int prev_dot_count;
 
+	dot_count = 0;
+	prev_dot_count = 0;
+	fd = filecheck(path);
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (line[0] == '\n' || line[0] == '\0')
+			error_map(line, fd, "Error: Empty line in map");
+		dot_count = dots_count(line);
+		if (prev_dot_count == 0)
+			prev_dot_count = dot_count;
+		if (dot_count != prev_dot_count)
+			error_map(line, fd, "Error: Inconsistent number of dots in lines");
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+}
 
+void	map_matriz(t_map *map, char *file)
+{
+	int		fd;
+	int		y;
+	char	*temp;
+	char	*line;
+
+	y = 0;
+	fd = filecheck(file);
+	map->point = malloc(sizeof(t_dots *) * (map->height));
+	if (!map->point)
+		ft_error(ERROR_INIT, 0);
+	dot_allocs(map->point, map->width, map->height, map);
+	while (y < map->height)
+	{
+		line = get_next_line(fd);
+		temp = line;
+		last_space(temp, map);
+		map_cord_put(temp, y, map);
+		free(line);
+		y++;
+	}
+	close (fd);
+}

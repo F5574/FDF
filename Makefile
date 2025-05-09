@@ -6,11 +6,12 @@
 #    By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/13 16:40:24 by gvon-ah-          #+#    #+#              #
-#    Updated: 2025/04/23 19:15:02 by gisrael          ###   ########.fr        #
+#    Updated: 2025/05/09 01:22:37 by gisrael          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS_C = fdf.c 
+SRCS_C = fdf.c aux_functions.c construct_destroy.c draw.c fdf_aux.c hooks.c \
+			map_handlers.c parser.c rotations.c color.c
 
 NAME = fdf
 
@@ -50,7 +51,7 @@ $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
 
 $(NAME): $(LIBFT) $(OBJS) $(MLX)
-	@$(CC) $(CFLAGS) $(NAME) $(OBJS) $(LIBFT) $(MLX) lm -lz -lXext -lX11 -o 
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) -lm -lz -lXext -lX11 -o $(NAME)
 	@echo $(NAME) Compiled!
 
 $(MLX):

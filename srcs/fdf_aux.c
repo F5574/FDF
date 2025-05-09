@@ -6,7 +6,7 @@
 /*   By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 19:44:03 by gisrael           #+#    #+#             */
-/*   Updated: 2025/04/24 00:02:28 by gisrael          ###   ########.fr       */
+/*   Updated: 2025/05/08 23:53:39 by gisrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,12 @@ void	ft_error(char *error_msg, int sys_func)
 		perror(error_msg);
 }
 
-void	my_mlx_pixel_put(t_window *img, int x, int y, int color)
+void	m_mlx_pixel_put(t_window *img, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = img->addr + (y * img->line_length + x * (img->bitpp / 8));
 	*(unsigned int *)dst = color;
-}
-
-int	testkey(int key_code, t_window *wind)
-{
-	(void)wind;
-	ft_printf("key_code: %d\n", key_code);
-	return (0);
 }
 
 float	fabs_v(float n)
