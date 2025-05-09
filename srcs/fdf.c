@@ -6,7 +6,7 @@
 /*   By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 19:26:38 by gisrael           #+#    #+#             */
-/*   Updated: 2025/05/09 00:21:15 by gisrael          ###   ########.fr       */
+/*   Updated: 2025/05/09 12:59:31 by gisrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,3 +56,6 @@ int	draw_img(t_fdf *fdf)
 	draw_map(&fdf->map, &fdf->window);
 	return (0);
 }
+
+// valgrind --leak-check=full --show-leak-kinds=all 
+//--track-fds=yes ./fdf Maps/test_maps/pnp_flat.fdf

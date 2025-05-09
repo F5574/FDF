@@ -6,7 +6,7 @@
 /*   By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:20:19 by gisrael           #+#    #+#             */
-/*   Updated: 2025/05/09 00:10:40 by gisrael          ###   ########.fr       */
+/*   Updated: 2025/05/09 12:44:34 by gisrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	dots_count(char *line)
 {
 	int	i;
 	int	count;
-	int in_value;
+	int	in_value;
 
 	i = 0;
 	count = 0;
@@ -24,21 +24,21 @@ static int	dots_count(char *line)
 	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] != ' ' && !in_value)
-        {
-            count++;
-            in_value = 1;
-        }
-        else if (line[i] == ' ')
-        {
-            in_value = 0;
-        }
+		{
+			count++;
+			in_value = 1;
+		}
+		else if (line[i] == ' ')
+		{
+			in_value = 0;
+		}
 		i++;
 	}
 	return (count);
 }
 
-static void error_map(char *line, int fd, char *msg)
-{ 
+static void	error_map(char *line, int fd, char *msg)
+{
 	free(line);
 	close(fd);
 	ft_error(msg, 0);
@@ -66,18 +66,19 @@ static void	map_cord_put(char *line, int y, t_map *map)
 		map->point[y][x].cord[X] = (x + 0.5 - (map->width / 2));
 		map->point[y][x].cord[Y] = (y + 0.5 - (map->height / 2));
 		map->point[y][x].cord[Z] = ft_atoi(temp);
-		while (*temp && (is_signals(*temp) || ft_isdigit(*temp) || is_color(*temp)))
+		while (*temp && (is_signals(*temp) || ft_isdigit(*temp)
+				|| is_color(*temp)))
 			temp++;
 		x++;
 	}
 }
 
-void map_format(char *path)
+void	map_format(char *path)
 {
-	int fd;
-	char *line;
-	int dot_count;
-	int prev_dot_count;
+	int		fd;
+	char	*line;
+	int		dot_count;
+	int		prev_dot_count;
 
 	dot_count = 0;
 	prev_dot_count = 0;

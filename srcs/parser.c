@@ -6,7 +6,7 @@
 /*   By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 19:49:18 by gisrael           #+#    #+#             */
-/*   Updated: 2025/05/09 02:37:24 by gisrael          ###   ########.fr       */
+/*   Updated: 2025/05/09 12:50:41 by gisrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,26 @@ void	error_file_extension(char *path)
 
 bool	is_valid_char(char *str)
 {
-    size_t	i;
+	size_t	i;
 
-    i = 0;
-    if (!str)
-        return (false);
-    if (is_signals(str[i]))
-        i++;
-    while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-    {
-        if (str[i] == ',')
-        {
-            if (color_verify(str, i))
-                return (false);
-            break;
-        }
-        if (!ft_isdigit(str[i]))
-            return (false);
-        i++;
-    }
-    return (true);
+	i = 0;
+	if (!str)
+		return (false);
+	if (is_signals(str[i]))
+		i++;
+	while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+	{
+		if (str[i] == ',')
+		{
+			if (color_verify(str, i))
+				return (false);
+			break ;
+		}
+		if (!ft_isdigit(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 void	free_map(char **map)
@@ -79,28 +79,29 @@ void	free_map(char **map)
 
 void	last_space(char *line, t_map *map)
 {
-    char	*temp;
-    size_t	i;
+	char	*temp;
+	size_t	i;
 
-    temp = line;
-    i = 0;
-    while (temp[i] && temp[i] != '\n')
-    {
-        while (temp[i] == ' ' || temp[i] == '\t')
-            i++;
-        if (ft_isdigit(temp[i]) || is_signals(temp[i]))
-        {
-            while (ft_isdigit(temp[i]))
-                i++;
-            if (temp[i] == ',')
-            {
-                if (color_verify(temp, i))
-                    error_color(temp, map, 1);
-                while (temp[i] && temp[i] != ' ' && temp[i] != '\t' && temp[i] != '\n')
-                    i++;
-            }
-        }
-        else if (temp[i] != '\0' && temp[i] != '\n')
-            error_color(temp, map, 2);
-    }
+	temp = line;
+	i = 0;
+	while (temp[i] && temp[i] != '\n')
+	{
+		while (temp[i] == ' ' || temp[i] == '\t')
+			i++;
+		if (ft_isdigit(temp[i]) || is_signals(temp[i]))
+		{
+			while (ft_isdigit(temp[i]))
+				i++;
+			if (temp[i] == ',')
+			{
+				if (color_verify(temp, i))
+					error_color(temp, map, 1);
+				while (temp[i] && temp[i] != ' ' && temp[i] != '\t'
+					&& temp[i] != '\n')
+					i++;
+			}
+		}
+		else if (temp[i] != '\0' && temp[i] != '\n')
+			error_color(temp, map, 2);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 19:26:51 by gisrael           #+#    #+#             */
-/*   Updated: 2025/05/09 02:35:38 by gisrael          ###   ########.fr       */
+/*   Updated: 2025/05/09 12:33:14 by gisrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	map_info(t_map *map, char *file);
 
 // color.c
 int		color_verify(char *temp, int i);
-void	error_color(char *temp,  t_map *map, int type);
+void	error_color(char *temp, t_map *map, int type);
 
 // construct_destroy.c
 void	window_init(t_window *wind);
@@ -152,7 +152,7 @@ void	map_format(char *path);
 void	map_matriz(t_map *map, char *file);
 
 // parser.c
-int     filecheck(char *path);
+int		filecheck(char *path);
 void	error_file_extension(char *path);
 bool	is_valid_char(char *str);
 void	free_map(char **map);

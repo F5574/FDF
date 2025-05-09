@@ -6,7 +6,7 @@
 /*   By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 01:03:51 by gisrael           #+#    #+#             */
-/*   Updated: 2025/05/09 02:37:56 by gisrael          ###   ########.fr       */
+/*   Updated: 2025/05/09 12:46:12 by gisrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 int	color_verify(char *temp, int i)
 {
-    int	start;
+	int	start;
 
-    if (temp[i] != ',')
-        return (1);
-    i++;
-    if (temp[i] != '0' || temp[i + 1] != 'x')
-        return (1);
-    i += 2;
-    start = i;
-    while (temp[i] && ((temp[i] >= '0' && temp[i] <= '9') || 
-            (temp[i] >= 'A' && temp[i] <= 'F') || 
-            (temp[i] >= 'a' && temp[i] <= 'f')))
-        i++;
-    if (i - start != 6)
-        return (1);
-    if (temp[i] && temp[i] != ' ' && temp[i] != '\t' && temp[i] != '\n')
-        return (1);
-    return (0);
+	if (temp[i] != ',')
+		return (1);
+	i++;
+	if (temp[i] != '0' || temp[i + 1] != 'x')
+		return (1);
+	i += 2;
+	start = i;
+	while (temp[i] && ((temp[i] >= '0' && temp[i] <= '9')
+			|| (temp[i] >= 'A' && temp[i] <= 'F')
+			|| (temp[i] >= 'a' && temp[i] <= 'f')))
+		i++;
+	if (i - start != 6)
+		return (1);
+	if (temp[i] && temp[i] != ' ' && temp[i] != '\t' && temp[i] != '\n')
+		return (1);
+	return (0);
 }
 
-void error_color(char *temp,  t_map *map,int type)
+void	error_color(char *temp, t_map *map, int type)
 {
 	if (type == 1)
 		ft_error(ERROR_COLOR, 0);
