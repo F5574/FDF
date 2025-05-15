@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gvon-ah- <gvon-ah-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 19:49:18 by gisrael           #+#    #+#             */
-/*   Updated: 2025/05/09 12:50:41 by gisrael          ###   ########.fr       */
+/*   Updated: 2025/05/15 20:13:03 by gvon-ah-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,20 @@ bool	is_valid_char(char *str)
 	size_t	i;
 
 	i = 0;
-	if (!str)
+	if (!str || *str == '\0')
 		return (false);
 	if (is_signals(str[i]))
 		i++;
+	if (!ft_isdigit(str[i]))
+		return (false);
 	while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
 	{
 		if (str[i] == ',')
 		{
 			if (color_verify(str, i))
 				return (false);
+			while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+				i++;
 			break ;
 		}
 		if (!ft_isdigit(str[i]))
@@ -77,20 +81,19 @@ void	free_map(char **map)
 	free(map);
 }
 
-void	last_space(char *line, t_map *map)
+void	last_space(char *line, t_map *map, size_t i)
 {
 	char	*temp;
-	size_t	i;
 
 	temp = line;
-	i = 0;
 	while (temp[i] && temp[i] != '\n')
 	{
 		while (temp[i] == ' ' || temp[i] == '\t')
 			i++;
-		if (ft_isdigit(temp[i]) || is_signals(temp[i]))
+		if (ft_isdigit(temp[i]) || (is_signals(temp[i])
+				&& ft_isdigit(temp[i + 1])))
 		{
-			while (ft_isdigit(temp[i]))
+			while (ft_isdigit(temp[i]) || is_signals(temp[i]))
 				i++;
 			if (temp[i] == ',')
 			{

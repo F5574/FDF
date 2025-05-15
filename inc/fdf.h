@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gvon-ah- <gvon-ah-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 19:26:51 by gisrael           #+#    #+#             */
-/*   Updated: 2025/05/09 12:33:14 by gisrael          ###   ########.fr       */
+/*   Updated: 2025/05/09 17:01:02 by gvon-ah-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ int		filecheck(char *path);
 void	error_file_extension(char *path);
 bool	is_valid_char(char *str);
 void	free_map(char **map);
-void	last_space(char *line, t_map *map);
+void	last_space(char *line, t_map *map, size_t i);
 
 // rotations.c
 void	rotation_x(t_map *map);

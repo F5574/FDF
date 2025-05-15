@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gvon-ah- <gvon-ah-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 01:03:51 by gisrael           #+#    #+#             */
-/*   Updated: 2025/05/09 12:46:12 by gisrael          ###   ########.fr       */
+/*   Updated: 2025/05/15 15:50:37 by gvon-ah-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	color_verify(char *temp, int i)
 			|| (temp[i] >= 'A' && temp[i] <= 'F')
 			|| (temp[i] >= 'a' && temp[i] <= 'f')))
 		i++;
-	if (i - start != 6)
+	if (i - start < 1 || i - start > 6)
 		return (1);
 	if (temp[i] && temp[i] != ' ' && temp[i] != '\t' && temp[i] != '\n')
 		return (1);

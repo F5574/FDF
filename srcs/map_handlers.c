@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_handlers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gvon-ah- <gvon-ah-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:20:19 by gisrael           #+#    #+#             */
-/*   Updated: 2025/05/09 12:44:34 by gisrael          ###   ########.fr       */
+/*   Updated: 2025/05/15 15:55:34 by gvon-ah-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ static int	dots_count(char *line)
 	in_value = 0;
 	while (line[i] && line[i] != '\n')
 	{
-		if (line[i] != ' ' && !in_value)
+		if (line[i] != ' ' && line[i] != '\t' && !in_value)
 		{
 			count++;
 			in_value = 1;
 		}
-		else if (line[i] == ' ')
+		else if (line[i] == ' ' || line[i] == '\t')
 		{
 			in_value = 0;
 		}
@@ -56,7 +56,7 @@ static void	map_cord_put(char *line, int y, t_map *map)
 	{
 		while (*temp == ' ' || *temp == 9)
 			temp++;
-		if (!is_valid_char(temp))
+		if (*temp && !is_valid_char(temp))
 		{
 			ft_error(ERROR_CHAR, 0);
 			free(line);
@@ -66,8 +66,7 @@ static void	map_cord_put(char *line, int y, t_map *map)
 		map->point[y][x].cord[X] = (x + 0.5 - (map->width / 2));
 		map->point[y][x].cord[Y] = (y + 0.5 - (map->height / 2));
 		map->point[y][x].cord[Z] = ft_atoi(temp);
-		while (*temp && (is_signals(*temp) || ft_isdigit(*temp)
-				|| is_color(*temp)))
+		while (*temp && *temp != ' ' && *temp != 9 && *temp != '\n')
 			temp++;
 		x++;
 	}
@@ -116,7 +115,7 @@ void	map_matriz(t_map *map, char *file)
 	{
 		line = get_next_line(fd);
 		temp = line;
-		last_space(temp, map);
+		last_space(temp, map, 0);
 		map_cord_put(temp, y, map);
 		free(line);
 		y++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gisrael <gisrael@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gvon-ah- <gvon-ah-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 23:27:02 by gisrael           #+#    #+#             */
-/*   Updated: 2025/05/09 12:46:59 by gisrael          ###   ########.fr       */
+/*   Updated: 2025/05/09 16:48:10 by gvon-ah-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void	map_info(t_map *map, char *file)
 	fd = filecheck(file);
 	line = get_next_line(fd);
 	if (!line)
+	{
 		ft_error(ERROR_MAP, 0);
+		exit(1);
+	}
 	map->mtz = ft_split(line, ' ');
 	while (line)
 	{
